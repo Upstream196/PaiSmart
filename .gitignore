@@ -10,6 +10,8 @@ src/main/resources/application-docker.yml
 src/main/resources/application-local.yml
 src/main/resources/application-prod.yml
 src/main/resources/application-secret.yml
+# 模板文件仅含占位符，保留在仓库中
+!src/main/resources/application.example.yml
 *.pem
 *.key
 *.p12
