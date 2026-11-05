@@ -1,16 +1,28 @@
-# Compiled class file
+# ============================================================
+# PaiSmart .gitignore  (main branch)
+# ============================================================
+
+# ---------- 1. Secrets / 本地配置（最关键） ----------
+# 以下文件含明文密钥：DeepSeek / DashScope Key、ES 密码、JWT secret、MinIO、MySQL 密码
+src/main/resources/application.yml
+src/main/resources/application-dev.yml
+src/main/resources/application-docker.yml
+src/main/resources/application-local.yml
+src/main/resources/application-prod.yml
+src/main/resources/application-secret.yml
+*.pem
+*.key
+*.p12
+*.jks
+*.keystore
+*.local
+.env.local
+.env.*.local
+
+# ---------- 2. Java / Maven ----------
+/target/
+/out/
 *.class
-
-# Log file
-*.log
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
 *.jar
 *.war
 *.nar
@@ -18,26 +30,41 @@
 *.zip
 *.tar.gz
 *.rar
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+*.ctxt
+.mtj.tmp/
 hs_err_pid*
 replay_pid*
+*.hprof
 
-.DS_Store
-.vite-ssg-dist
-.vite-ssg-temp
-*.local
+# ---------- 3. Frontend / Node ----------
+node_modules/
 dist
 dist-ssr
-node_modules
-.idea/
-*.log
-/target
-/.idea
-/.vscode
+.vite-ssg-dist
+.vite-ssg-temp
+coverage
+.pnpm-store/
+.turbo/
+*.tsbuildinfo
+.eslintcache
+.stylelintcache
+.VSCodeCounter
+/cypress/videos/
+/cypress/screenshots/
+frontend/package-lock.json
+frontend/yarn.lock
+frontend/src/typings/components.d.ts
+frontend/src/typings/auto-imports.d.ts
+frontend/public/languages
+frontend/public/themes
+# 只忽略 frontend/.vscode 下的本地文件，保留共享配置
+frontend/.vscode/*
+!frontend/.vscode/extensions.json
+!frontend/.vscode/settings.json
+!frontend/.vscode/launch.json
 
-# Logs
-logs
+# ---------- 4. Logs ----------
+logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -45,47 +72,48 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-.DS_Store
-dist
-dist-ssr
-coverage
-*.local
-
-/cypress/videos/
-/cypress/screenshots/
-
-# Editor directories and files
-frontend/.vscode/*
-frontend/!.vscode/extensions.json
-frontend/!.vscode/settings.json
-frontend/!.vscode/launch.json
-.idea
+# ---------- 5. IDE / Editor ----------
+.idea/
+/.vscode/
+*.iml
+*.ipr
+*.iws
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
 
-frontend/package-lock.json
-frontend/yarn.lock
+# ---------- 6. Python 工具缓存（本地用） ----------
+.py-lib/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
 
-.VSCodeCounter
-frontend/src/typings/components.d.ts
-frontend/src/typings/auto-imports.d.ts
-frontend/public/languages
-frontend/public/themes
+# ---------- 7. 本地运行时数据 ----------
+/uploads/
+/minio-data/
+/docker/volumes/
+
+# ---------- 8. 本地调试残留 / 备份 / 系统文件 ----------
+/es_t.json
+/es_knn9.html
+debug.log
+*.bak
+*.orig
+*.rej
 src/main/resources/application.yml~
 
-# Local IDE / AI tool configurations and python library cache
+.DS_Store
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ---------- 9. 个人材料 / AI 工具配置（不是项目源码） ----------
 .claude/
 .qoder/
 .trae/
-.py-lib/
-# Personal materials (resumes, interview prep) - not project source
 /material/
-# Backend config files with secrets (API keys, DB passwords, MinIO/JWT/ES keys).
-# Keep local copies untracked instead of committing sensitive credentials.
-src/main/resources/application.yml
-src/main/resources/application-dev.yml
-src/main/resources/application-docker.yml
